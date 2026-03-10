@@ -13,7 +13,7 @@ def main():
 
     # Setup necessary objects
     app = Application(
-        consumer_group="data_norm_v1.4-dev",
+        consumer_group="data_norm_v1.5-dev",
         auto_create_topics=True,
         auto_offset_reset="earliest"
     )
@@ -35,7 +35,13 @@ def main():
 
     sdf = sdf.apply(transoform_value_to_row)
 
-    sdf[sdf.contains("accelerometer-x")].print_table(metadata=False)
+    sdf_print = sdf[sdf.contains("accelerometer-x")]
+    sdf_print = sdf_print.apply(lambda row: {
+      "time": row["time"],
+      "acc_x": row["accelerometer-x"],
+      "acc_y": row["accelerometer-y"]
+    })
+    sdf_print.print_table(metadata=False)
 
     # Finish off by writing to the final result to the output topic
     #sdf.to_topic(output_topic)
