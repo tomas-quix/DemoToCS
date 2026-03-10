@@ -13,7 +13,7 @@ def main():
 
     # Setup necessary objects
     app = Application(
-        consumer_group="data_norm_v1.1-dev",
+        consumer_group="data_norm_v1.2-dev",
         auto_create_topics=True,
         auto_offset_reset="earliest"
     )
@@ -22,6 +22,18 @@ def main():
     sdf = app.dataframe(topic=input_topic)
 
     sdf = sdf.apply(lambda row: row["payload"], expand=True)
+
+    def transoform_value_to_row(value: dict):
+
+      result = {
+        "time": row["time"]
+      }
+      for dimension in row["values"].keys():
+        result[row["name"] + "-" dimension] = row["values"][dimension]
+
+
+    sdf = sdf.apply(transoform_value_to_row)
+
     sdf = sdf.print()
 
     # Finish off by writing to the final result to the output topic
