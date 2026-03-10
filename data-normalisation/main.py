@@ -1,5 +1,6 @@
 # import the Quix Streams modules for interacting with Kafka.
 # For general info, see https://quix.io/docs/quix-streams/introduction.html
+# JAVI
 from quixstreams import Application
 
 import os
