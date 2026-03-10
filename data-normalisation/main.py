@@ -13,7 +13,7 @@ def main():
 
     # Setup necessary objects
     app = Application(
-        consumer_group="data_norm_v1.5-dev",
+        consumer_group="data_norm_v1.5",
         auto_create_topics=True,
         auto_offset_reset="earliest"
     )
@@ -37,8 +37,10 @@ def main():
 
     sdf[sdf.contains("accelerometer-x")].print_table(metadata=False, live_slowdown=0)
 
+    sdf = sdf.set_timestamp(lambda row, *_: int(row["time"] / 1E6))
+
     # Finish off by writing to the final result to the output topic
-    #sdf.to_topic(output_topic)
+    sdf.to_topic(output_topic)
 
     # With our pipeline defined, now run the Application
     app.run()
