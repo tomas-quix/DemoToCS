@@ -35,7 +35,7 @@ def main():
 
     sdf = sdf.apply(transoform_value_to_row)
 
-    sdf[sdf.contains("accelerometer-x")].print_table(metadata=False, live_slowdown=0)
+    sdf[sdf.contains("accelerometer-x")].print_table(metadata=False)
 
     sdf = sdf.set_timestamp(lambda row, *_: int(row["time"] / 1E6))
 
