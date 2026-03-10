@@ -7,8 +7,10 @@ variables:
     defaultValue: raw-data
   - name: output
     inputType: OutputTopic
+    multiline: false
     description: Name of the output topic to write to.
-    defaultValue: transform
+    defaultValue: table-data
+    required: true
 dockerfile: dockerfile
 runEntryPoint: main.py
 defaultFile: main.py
