@@ -43,7 +43,7 @@ deployments:
         value: table-data
   - name: HTTP API Source UI
     application: http-api-source-ui
-    version: latest
+    version: 9cd4079dc0427e53198ccadf5ea5d307b82bdeb8
     deploymentType: Service
     resources:
       cpu: 200
