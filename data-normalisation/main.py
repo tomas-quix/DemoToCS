@@ -29,7 +29,7 @@ def main():
         "time": value["time"]
       }
       for dimension in value["values"].keys():
-        result[row["name"] + "-" + dimension] = value["values"][dimension]
+        result[value["name"] + "-" + dimension] = value["values"][dimension]
 
 
     sdf = sdf.apply(transoform_value_to_row)
