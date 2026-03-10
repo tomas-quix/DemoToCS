@@ -21,9 +21,8 @@ def main():
     output_topic = app.topic(name=os.environ["output"])
     sdf = app.dataframe(topic=input_topic)
 
-    # Do StreamingDataFrame operations/transformations here
-    sdf = sdf.apply(lambda row: row).filter(lambda row: True)
-    sdf = sdf.print(metadata=True)
+    sdf = sdf.apply(lambda row: row["payload"], expand=True)
+    sdf = sdf.print()
 
     # Finish off by writing to the final result to the output topic
     #sdf.to_topic(output_topic)
