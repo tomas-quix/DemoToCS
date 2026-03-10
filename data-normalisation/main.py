@@ -26,9 +26,9 @@ def main():
     def transoform_value_to_row(value: dict):
 
       result = {
-        "time": row["time"]
+        "time": value["time"]
       }
-      for dimension in row["values"].keys():
+      for dimension in value["values"].keys():
         result[row["name"] + "-" + dimension] = row["values"][dimension]
 
 
