@@ -46,3 +46,4 @@ deployments:
 topics:
   - name: raw-data
   - name: table-data
+  - name: http-source
