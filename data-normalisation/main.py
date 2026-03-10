@@ -31,6 +31,7 @@ def main():
       for dimension in value["values"].keys():
         result[value["name"] + "-" + dimension] = value["values"][dimension]
 
+      return result
 
     sdf = sdf.apply(transoform_value_to_row)
 
